@@ -1,0 +1,24 @@
+
+<%= session[:access_token] %>
+
+<a href="/oauth/connect">Connect with Instagram</a>
+
+
+
+
+<div style="display:none;" class="sticky sticky_initial">
+	
+	<!-- Logo -->
+	<div class="title_block title_initial"></div>
+	
+	<!-- Map -->
+	<div class="map_block map_initial">
+		<div id="map-canvas"></div>
+	</div>
+	
+	<%= form_tag("/", method: "post", id: "tag_form", :class => "input_block input_initial") do %>
+	  <%= text_field_tag(:tag, params[:tag],:class => "hashtag", :id => "hash_input") %>
+	  <%= submit_tag("find", :class => "submit") %>
+	<% end %>
+				
+</div>

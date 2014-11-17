@@ -1,0 +1,231 @@
+/* General */
+
+html, body {
+	width: 100%;
+	height: 100%;	
+	margin: 0;
+	padding: 0;
+	-webkit-touch-callout: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.clear {
+	width: 0;
+	height: 0;
+	clear: both;
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+}
+
+body {
+
+	font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	-webkit-font-smoothing: antialiased;
+	-o-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	color: #000;
+	background-color: #fff;
+}
+
+div.spacer {
+	width: 100%;
+	height: 10px;
+	float: left;
+}
+
+/* Smooth Transitions */
+
+input.submit {
+	transition: all .3s;	
+}
+
+ul.results li, .title_block, .input_block, .sticky {
+	transition: all .5s ease-in-out;
+}
+	
+.map_block {
+	transition: all .9s ease-in-out;	 
+}
+	 
+/* Sticky Menu */	 
+
+div.sticky {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 200px;
+	z-index: 10000;
+	width: 100%;
+	background-color: #0000ff;
+}
+
+div.sticky_initial {
+	height: 100%;
+}
+
+/* Logo */
+
+div.title_block {
+	position: absolute;
+	width: 300px;
+	height: 160px;
+	left: 80px;
+	margin-top: 20px;
+	background-image: url('../assets/logo.png');
+	background-size: contain;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+div.title_initial {
+	width: 100%;
+	height: 180px;
+	left: 0;
+	top: 40px;
+}
+
+/* Map */
+
+div.map_block {
+	position: absolute;
+	width: 257px;
+	height: 200px;
+	right: 20px;
+	top: 0px;
+	background-color: #0000ff;
+}
+
+	#map-canvas {
+		background-color: #0000ff !important;
+		width: 100%;
+		height: 100%;
+		position: relative;
+	}
+	
+	
+		/* Hides useless stuff */
+		
+		a[href^="http://maps.google.com/maps"]{display:none !important}
+		
+		.gmnoprint a, .gmnoprint span {
+		    display:none;
+		}
+		.gmnoprint div {
+		    background:none !important;
+		}
+		
+		.map_initial {
+			right: -300px;
+			opacity: 0;
+		}
+
+/* Input */
+
+.input_block {
+	position: absolute;
+	width: 168px;
+	height: 43px;
+	margin-top: 80px;
+	left: 50%;
+	margin-left: -151px;
+	background-image: url('../assets/hash.jpg');
+	background-size: 43px 43px;
+	background-position: left center;
+	background-repeat: no-repeat;
+	background-color: #fff;
+}
+
+	.input_initial {
+		top: 300px;
+		margin-top: -40px;
+	}
+	
+	.input_block input.hashtag {
+		height: 33px;
+		padding: 5px 12px;
+		width: 100%;
+		position: relative;
+		top: 0;
+		left: 43px;
+		text-align: left;
+		color: #0000ff;
+		font-size: 16px;
+		font-weight: bold;
+		outline: none;
+		text-transform: uppercase;
+	}
+
+	input.submit {
+		width: 84px;
+		height: 43px;
+		position: absolute;
+		left: 235px;
+		top: 0;
+		line-height: 43px;
+		text-align: center;
+		background-color: #0000ff;
+		
+		color: #fff;
+		border: 1px solid #fff;
+		text-transform: uppercase;
+	
+	}
+
+	input.submit:hover {
+		cursor: pointer;	
+		background-color: #ffff00;
+		color: #0000ff;
+	}
+	
+
+/* Instagram Feed */
+
+ul.results {
+	width: 1240px;
+	margin: 210px auto 0 auto;
+	list-style: none;
+}
+
+	ul.results li {
+		margin: 10px;
+		width: 224px;
+		height: 224px;
+		background-size: cover;
+		background-repeat: no-repeat;
+		float: left;
+		transition: all .4s;
+		border: 2px solid rgba(255, 255, 255, 1);
+	}
+	
+	ul.results li:hover {
+		border: 2px solid #ff0000;
+	}
+
+
+@media only screen and (max-width: 1240px), only screen and (max-device-width: 1240px){
+
+	ul.results { width: 992px;}	
+	
+}
+
+@media only screen and (max-width: 992px), only screen and (max-device-width: 992px){
+
+	ul.results { width: 744px;}	
+	
+}
+
+@media only screen and (max-width: 744px), only screen and (max-device-width: 744px){
+
+	ul.results { width: 496px;}	
+	
+}
+
+
+
+
+

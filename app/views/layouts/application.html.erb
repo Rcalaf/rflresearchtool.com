@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IkeaCom</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+<style>
+  #map_canvas {
+    width: 100%;
+    height: 620px;
+  }
+#wrapper
+       {
+		   width:100%;
+		  /* position: fixed;*/
+		   float: left;
+		   bottom: 0px;
+           margin-left: auto;
+           /*margin-top: 100px;*/
+       }
+#tag_form
+{
+	/*width:100%;*/
+	position: fixed;
+	left:45%;
+	top:60px;
+}
+</style>
+
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+
+<%= yield :js%>
+
+<script type="text/javascript">
+ /*    $(document).ready(function() {
+         $('#jsCarousel').jsCarousel({ onthumbnailclick: function(src) { alert(src); }, autoscroll: false, itemstodisplay: 6 });
+     });*/
+</script>
+
+</head>
+
+
+<body onLoad='initMap();'>
+
+
+<%= yield %>
+
+</body>
+
+</html>

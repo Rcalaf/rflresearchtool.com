@@ -1,0 +1,139 @@
+	<%= content_for :js do %>
+	<script>
+
+			var map;
+			
+			/* Set the possition to crop the map the right way*/
+			
+			var fitmap = new google.maps.LatLng(47, 11);
+			
+			/* Map Styles*/
+			
+			var MY_MAPTYPE_ID = 'custom_style';
+		
+		function initialize() {
+		
+			var featureOpts = [
+				{
+				"featureType": "administrative",
+				"stylers": [
+				  { "visibility": "off" },
+				]
+				},{
+				"featureType": "landscape.man_made",
+				"stylers": [
+				  { "visibility": "off" },
+				  { "color": "#ffffff" }
+				]
+				},{
+				"featureType": "poi",
+				"stylers": [
+				  { "visibility": "off" }
+				]
+				},{
+				"featureType": "road",
+				"stylers": [
+				  { "visibility": "off" }
+				]
+				},{
+				"featureType": "transit",
+				"stylers": [
+				  { "visibility": "off" }
+				]
+				},{
+				"featureType": "water",
+				"stylers": [
+				  { "color": "#0000ff" }
+				]
+				},{
+				"featureType": "landscape.natural.landcover",
+				"stylers": [
+				  { "visibility": "on" },
+				  { "color": "#ffffff" }
+				]
+				},{
+				"featureType": "landscape.natural.terrain",
+				"stylers": [
+				  { "visibility": "off" },
+				  { "color": "#ffffff" }
+				]
+				}
+			];
+		
+			var mapOptions = {
+				zoom: 0,
+				center: fitmap,
+					mapTypeControlOptions: {
+					mapTypeIds: [google.maps.MapTypeId.ROADMAP, MY_MAPTYPE_ID]
+				},
+				draggable: false,
+				scrollwheel: false,
+				disableDoubleClickZoom: true,
+				disableDefaultUI: true,
+				mapTypeId: MY_MAPTYPE_ID
+			};
+			
+			map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
+			
+			var styledMapOptions = {
+				name: 'Custom Style'
+			};
+			
+			/* Pin Style*/
+			
+			var redCircle = new google.maps.MarkerImage("assets/circle.svg", null, null, null, new google.maps.Size(10,10));
+			
+			var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
+			
+			map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
+			
+	   		<% @media_items.each_with_index do |media_item,index|%>
+				var marker_<%=index%> = new google.maps.Marker({
+						         map:map,
+						         draggable:false,
+						         //animation: google.maps.Animation.DROP,
+						         position: new google.maps.LatLng("<%=media_item.location.latitude%>","<%=media_item.location.longitude%>"),
+						         icon: redCircle
+						      });
+
+				var infowindow_<%=index%> = new google.maps.InfoWindow({
+								      content: "<img src='<%=media_item.images.thumbnail.url%>'>"
+								   });
+
+								  google.maps.event.addListener(marker_<%=index%>, "click", function() {
+								  	  infowindow_<%=index%>.open(map,marker_<%=index%>);
+								  });
+			<%end%>
+	 }
+
+
+
+	</script>
+
+	<%end%>
+	
+	
+	<div class="sticky<%=@media_items.empty? ? " sticky_initial" : ""%>">
+		
+		<!-- Logo -->
+		<div class="title_block<%=@media_items.empty? ? " title_initial" : ""%>"></div>
+		
+		<!-- Map -->
+		<div class="map_block<%=@media_items.empty? ? " map_initial" : ""%>">
+			<div id="map-canvas"></div>
+		</div>
+		
+		<%= form_tag("/", method: "post", id: "tag_form", :class => "input_block#{@media_items.empty? ? ' input_initial' : ''}") do %>
+		  <%= text_field_tag(:tag, params[:tag],:class => "hashtag", :id => "hash_input") %>
+		  <%= submit_tag("find", :class => "submit") %>
+		<% end %>
+					
+	</div>
+	
+	<!-- Instagram Feed -->
+	<ul class="results">
+		<% @media_items.each do |media_item|%>
+		<li style="background-image: url('<%=media_item.images.thumbnail.url%>')"></li>
+		<%end%>
+	</ul>
+	<div class="spacer"></div>

@@ -1,0 +1,90 @@
+<%= content_for :js do %>
+<script>
+
+ var center;		  
+ var marker;
+ var map_2;
+
+function initMap(){
+
+
+	center_2 = new google.maps.LatLng(20.32893, 0);
+	zoom_2 = 2.;
+
+
+	//alert('Loading Map');
+
+
+	var mapOptions_2 = {
+     //scrollwheel: false,
+     zoom: zoom_2,
+     disableDefaultUI: false,
+	 scrollwheel: false,
+     mapTypeId: google.maps.MapTypeId.ROADMAP,
+     center: center_2,
+     styles: 
+[{"featureType":"landscape","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"stylers":[{"hue":"#00aaff"},{"saturation":-100},{"gamma":2.15},{"lightness":12}]},{"featureType":"road","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"lightness":24}]},{"featureType":"road","elementType":"geometry","stylers":[{"lightness":57}]}]
+
+   };
+
+
+   map_2 = new google.maps.Map(document.getElementById("map_canvas"),
+           mapOptions_2);
+
+   var myIconLocal = new google.maps.MarkerImage("http://vinitiate.se/blogazine/photos/canu_pin_local.png", null, null, null, new google.maps.Size(20,30));
+
+   		<% @media_items.each_with_index do |media_item,index|%>
+			var marker_<%=index%> = new google.maps.Marker({
+					         map:map_2,
+					         draggable:false,
+					         animation: google.maps.Animation.DROP,
+					         position: new google.maps.LatLng("<%=media_item.location.latitude%>","<%=media_item.location.longitude%>")
+					         //icon: myIcon
+					      });
+		
+			var infowindow_<%=index%> = new google.maps.InfoWindow({
+							      content: "<img src='<%=media_item.images.thumbnail.url%>'>"
+							   });
+
+							  google.maps.event.addListener(marker_<%=index%>, "click", function() {
+							  	  infowindow_<%=index%>.open(map_2,marker_<%=index%>);
+							  });
+		<%end%>
+ }
+
+
+
+</script>
+
+<%end%>
+
+<%= form_tag("/more",method: "post", remote: true) do %>
+	<%= text_field_tag(:min_tag_id,@min_tag_id, id: :min)%>
+	<%= text_field_tag(:max_tag_id,@max_tag_id, id: :max)%>
+	<%= text_field_tag(:next_url,@next_url, id: :next_url)%>
+	<%= submit_tag("Load More") %>
+<% end %>
+<%= @media_items.size%><br />
+<%# @min_tag_id%>
+
+<div id="map_canvas"></div>
+
+<%= form_tag("/search", method: "post", id: "tag_form") do %>
+  <%= text_field_tag(:tag) %>
+  <%= submit_tag("Inspiration") %>
+<% end %>
+
+<div id="wrapper">
+    <div id="jsCarousel">
+	<% @media_items.each_with_index do |media_item,index|%>
+	
+		<div>
+		    <img src='<%=media_item.images.thumbnail.url%>'><br />
+		</div>
+	<%end%>
+	</div>
+</div>
+
+
+
+

@@ -1,0 +1,23 @@
+<%= content_for :js_points do %>
+
+		var marker_<%=index%> = new google.maps.Marker({
+				         map:map_2,
+				         draggable:false,
+				         animation: google.maps.Animation.DROP,
+				         position: new google.maps.LatLng("<%=media_item.location.latitude%>","<%=media_item.location.longitude%>")
+				         //icon: myIcon
+				      });
+	
+		var infowindow_<%=index%> = new google.maps.InfoWindow({
+						      content: "<img src='<%=image.images.thumbnail.url%>'>"
+						   });
+
+						  google.maps.event.addListener(marker_<%=index%>, "click", function() {
+						  	  infowindow_<%=index%>.open(map_2,marker_<%=index%>);
+						  });
+
+<%end%>
+
+
+
+<li style="background-image: url('<%=image.images.thumbnail.url%>')"></li>

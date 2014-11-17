@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>ROOM FOR LIVING</title>
+		
+		<meta charset="utf-8">
+		<meta http-equser experiencev="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="description" content="About SchoolKit">
+		
+		
+		<!-- for iPhones -->
+        <meta name="apple-mobile-web-app-capable" cntent="yes" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	    <%= csrf_meta_tags %>
+	
+		<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+	
+	<%= yield :js%>
+	
+
+	<script>
+
+		/* Intro Animations*/
+
+		$(document).ready(function(){
+
+
+			/* Trigger by submit button
+
+			$(".submit").click(function(){
+		   		$(".input_block").removeClass("input_initial");
+		   		$(".sticky").removeClass("sticky_initial");
+		   		$(".map_block").removeClass("map_initial");
+		   		$(".title_block").removeClass("title_initial");
+		    });
+
+		    /* Trigger by enter key
+
+		    $('#hash_input').keydown(function (e){
+			    if(e.keyCode == 13){
+			    	$(".input_block").removeClass("input_initial");
+			    	$(".sticky").removeClass("sticky_initial");
+			    	$(".map_block").removeClass("map_initial");
+			    	$(".title_block").removeClass("title_initial");
+			    }
+			})*/
+		});
+
+	</script>
+	</head>
+	<body onLoad='initialize();'>
+	<%= yield%>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

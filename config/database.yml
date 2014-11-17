@@ -50,5 +50,5 @@ test:
 production:
   <<: *default
   database: ikea_com_production
-  username: ikea_com
-  password: <%= ENV['IKEA_COM_DATABASE_PASSWORD'] %>
+  username: root
+  password: wL8XSPha

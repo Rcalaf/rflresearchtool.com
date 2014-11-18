@@ -42,7 +42,7 @@ class InstagramController < ApplicationController
         @next_url = response.pagination.next_url
         @min_tag_id = response.pagination.min_tag_id
       
-        while @media_items.size < 10 do
+        while @media_items.size < 400 do
            response = @client.tag_recent_media(@tags[0].name,:max_id => @next_max_tag_id)
               for media_item in response
                 if media_item.location

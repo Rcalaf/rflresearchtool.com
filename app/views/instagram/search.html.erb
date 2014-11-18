@@ -11,6 +11,8 @@
 			/* Map Styles*/
 			
 			var MY_MAPTYPE_ID = 'custom_style';
+			
+			var markers = Array();
 		
 		function initialize() {
 		
@@ -108,7 +110,9 @@
 						         position: new google.maps.LatLng("<%=media_item.location.latitude%>","<%=media_item.location.longitude%>"),
 						         icon: redCircle
 						      });
-
+						
+				markers.push(marker_<%=index%>);
+				
 				var infowindow_<%=index%> = new google.maps.InfoWindow({
 								      content: "<img src='<%=media_item.images.thumbnail.url%>'>"
 								   });
@@ -128,6 +132,9 @@
 			var wz = $('ul.results li').width();
 			$('ul.results li').css({'height':wz});
 		});
+		
+		
+		
 
 	</script>
 
@@ -145,11 +152,8 @@
 		</div>
 		
 		<%= form_tag("/", method: "post", id: "tag_form", :class => "input_block#{@media_items.empty? ? ' input_initial' : ''}") do %>
-		  <% if flash[:error] %>
-			<p><%= flash[:error]%></p>
-		  <%end%>
-		  <%= text_field_tag(:tag, params[:tag],:class => "hashtag", :id => "hash_input") %>
-		  <%= submit_tag("find", :class => "submit") %>
+		  <%= text_field_tag(:tag, (flash[:error].nil? ? params[:tag] : flash[:error]),:class => "hashtag", :id => "hash_input",:autocomplete=>"off") %>
+		  <%= submit_tag("Explore", :class => "submit") %>
 		<% end %>
 					
 	</div>
@@ -159,8 +163,8 @@
 	
 		<div class="loader inactive"></div>
 
-		<% @media_items.each do |media_item|%>
-		<li style="background-image: url('<%=media_item.images.thumbnail.url%>')"></li>
+		<% @media_items.each_with_index do |media_item,index|%>
+		<li id="marker_<%=index%>" style="background-image: url('<%=media_item.images.thumbnail.url%>')"></li>
 		<%end%>
 	</ul>
 	<div class="spacer"></div>

@@ -28,7 +28,10 @@ class InstagramController < ApplicationController
     if request.post?
       params[:tag] = params[:tag].sub(' ','_')
       
-      @tags = @client.tag_search(params[:tag])
+    
+      unless params[:tag].empty?
+        @tags = @client.tag_search(params[:tag])
+      end
       
       unless @tags.empty? 
         response = @client.tag_recent_media(@tags[0].name)
@@ -42,7 +45,7 @@ class InstagramController < ApplicationController
         @next_url = response.pagination.next_url
         @min_tag_id = response.pagination.min_tag_id
       
-        while @media_items.size < 400 do
+        while @media_items.size < 500 do
            response = @client.tag_recent_media(@tags[0].name,:max_id => @next_max_tag_id)
               for media_item in response
                 if media_item.location

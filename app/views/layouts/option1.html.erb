@@ -13,12 +13,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
+		<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 		
 		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	    <%= csrf_meta_tags %>
 	
-		<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+	
 	
 	<%= yield :js%>
 	
@@ -33,23 +34,37 @@
 			/* Trigger by submit button*/
 
 			$(".submit").click(function(){
-		   		$(".input_block").removeClass("input_initial");
-		   		$(".sticky").removeClass("sticky_initial");
-		   		$(".map_block").removeClass("map_initial");
-		   		$(".title_block").removeClass("title_initial");
-				$(".loader").removeClass("inactive");
+				if($('input:text').val() != ''){
+					$(".input_block").removeClass("input_initial");
+			   		$(".sticky").removeClass("sticky_initial");
+			   		$(".map_block").removeClass("map_initial");
+			   		$(".title_block").removeClass("title_initial");
+					$(".loader").removeClass("inactive");	
+				}
 		    });
 
 		    /* Trigger by enter key*/
 
 		   $('#hash_input').keydown(function (e){
-			    if(e.keyCode == 13){
+			    if(e.keyCode == 13 && $('input:text').val() != ''){
 			    	$(".input_block").removeClass("input_initial");
 			    	$(".sticky").removeClass("sticky_initial");
 			    	$(".map_block").removeClass("map_initial");
 			    	$(".title_block").removeClass("title_initial");
 			    }
 			})
+			
+		  $('.results > li').hover(function(){
+			for (var index in markers) {
+				markers[index].setMap(null);
+			}
+			markers[this.id.split('_')[1]].setMap(map);
+			//alert(markers[this.id.split('_')[1]]);
+		  },function(){
+			for (var index in markers) {
+				markers[index].setMap(map);
+			}
+		  });	
 		});
 
 	</script>

@@ -26,36 +26,42 @@ class InstagramController < ApplicationController
     @tags = []
     
     if request.post?
-      @tags = @client.tag_search(params[:tag])
-
-      response = @client.tag_recent_media(@tags[0].name)
-      for media_item in response
-        if media_item.location
-    	    @media_items << media_item
-  			end
-    	end
-	
-	    @next_max_tag_id = response.pagination.next_max_tag_id
-      @next_url = response.pagination.next_url
-      @min_tag_id = response.pagination.min_tag_id
+      params[:tag] = params[:tag].sub(' ','_')
       
-      while @media_items.size < 400 do
-         response = @client.tag_recent_media(@tags[0].name,:max_id => @next_max_tag_id)
-            for media_item in response
-              if media_item.location
-          	    @media_items << media_item
-        			end
-          	end
+      @tags = @client.tag_search(params[:tag])
+      
+      unless @tags.empty? 
+        response = @client.tag_recent_media(@tags[0].name)
+        for media_item in response
+          if media_item.location
+      	    @media_items << media_item
+    			end
+      	end
+	
+  	    @next_max_tag_id = response.pagination.next_max_tag_id
+        @next_url = response.pagination.next_url
+        @min_tag_id = response.pagination.min_tag_id
+      
+        while @media_items.size < 10 do
+           response = @client.tag_recent_media(@tags[0].name,:max_id => @next_max_tag_id)
+              for media_item in response
+                if media_item.location
+            	    @media_items << media_item
+          			end
+            	end
 
-          puts response.pagination.next_max_tag_id
-          puts @media_items.size
+            puts response.pagination.next_max_tag_id
+            puts @media_items.size
 
-    	    @next_max_tag_id = response.pagination.next_max_tag_id
-          @next_url = response.pagination.next_url
-          @min_tag_id = response.pagination.min_tag_id
-      end
+      	    @next_max_tag_id = response.pagination.next_max_tag_id
+            @next_url = response.pagination.next_url
+            @min_tag_id = response.pagination.min_tag_id
+        end
      
-   
+      else
+        flash[:error] = "Invalid Hashtag"
+        redirect_to root_url
+      end
      
     end
   end

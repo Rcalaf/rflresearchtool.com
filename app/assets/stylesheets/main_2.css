@@ -132,7 +132,7 @@ div.map_block {
 
 /* Input */
 
-div.input_block {
+form.input_block {
 	position: absolute;
 	width: 168px;
 	height: 43px;
@@ -151,7 +151,7 @@ div.input_block {
 		margin-top: -40px;
 	}
 	
-	div.input_block input.hashtag {
+	form.input_block input.hashtag {
 		height: 33px;
 		padding: 5px 12px;
 		width: 100%;
@@ -193,6 +193,7 @@ div.input_block {
 
 ul.results {
 	width: calc(100% - 552px);
+	/*height: calc(100% - 552px);*/
 	float: left;
 	height: 100%;
 	margin-left: 552px;
@@ -202,6 +203,7 @@ ul.results {
 	ul.results li {
 		margin: 10px;
 		width: calc(33% - 24px);
+		height: calc(36% - 24px);
 		display: block;
 		background-size: cover;
 		background-repeat: no-repeat;

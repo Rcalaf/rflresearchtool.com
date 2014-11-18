@@ -5,7 +5,8 @@
 			
 			/* Set the possition to crop the map the right way*/
 			
-			var fitmap = new google.maps.LatLng(47, 11);
+			//var fitmap = new google.maps.LatLng(47, 11); // Option 1
+			var fitmap = new google.maps.LatLng(40, 11); // Option 2
 			
 			/* Map Styles*/
 			
@@ -60,7 +61,7 @@
 				}
 			];
 		
-			var mapOptions = {
+			/*var mapOptions = {
 				zoom: 0,
 				center: fitmap,
 					mapTypeControlOptions: {
@@ -71,8 +72,20 @@
 				disableDoubleClickZoom: true,
 				disableDefaultUI: true,
 				mapTypeId: MY_MAPTYPE_ID
-			};
+			};*/ //Options 1
 			
+			var mapOptions = {
+				zoom: 1,
+				center: fitmap,
+					mapTypeControlOptions: {
+					mapTypeIds: [google.maps.MapTypeId.ROADMAP, MY_MAPTYPE_ID]
+				},
+				draggable: true,
+				scrollwheel: true,
+				disableDoubleClickZoom: false,
+				disableDefaultUI: false,
+				mapTypeId: MY_MAPTYPE_ID
+			};
 			map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
 			
 			var styledMapOptions = {
@@ -124,6 +137,9 @@
 		</div>
 		
 		<%= form_tag("/", method: "post", id: "tag_form", :class => "input_block#{@media_items.empty? ? ' input_initial' : ''}") do %>
+		  <% if flash[:error] %>
+			<p><%= flash[:error]%></p>
+		  <%end%>
 		  <%= text_field_tag(:tag, params[:tag],:class => "hashtag", :id => "hash_input") %>
 		  <%= submit_tag("find", :class => "submit") %>
 		<% end %>

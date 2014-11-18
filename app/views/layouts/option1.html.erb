@@ -30,25 +30,26 @@
 		$(document).ready(function(){
 
 
-			/* Trigger by submit button
+			/* Trigger by submit button*/
 
 			$(".submit").click(function(){
 		   		$(".input_block").removeClass("input_initial");
 		   		$(".sticky").removeClass("sticky_initial");
 		   		$(".map_block").removeClass("map_initial");
 		   		$(".title_block").removeClass("title_initial");
+				$(".loader").removeClass("inactive");
 		    });
 
-		    /* Trigger by enter key
+		    /* Trigger by enter key*/
 
-		    $('#hash_input').keydown(function (e){
+		   $('#hash_input').keydown(function (e){
 			    if(e.keyCode == 13){
 			    	$(".input_block").removeClass("input_initial");
 			    	$(".sticky").removeClass("sticky_initial");
 			    	$(".map_block").removeClass("map_initial");
 			    	$(".title_block").removeClass("title_initial");
 			    }
-			})*/
+			})
 		});
 
 	</script>

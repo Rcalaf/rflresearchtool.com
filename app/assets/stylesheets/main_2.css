@@ -248,6 +248,7 @@ ul.results {
 }
 
 
+
 @-webkit-keyframes NAME-YOUR-ANIMATION {
   0%   { -webkit-transform: rotate(0deg); }
   100% { -webkit-transform: rotate(360deg); }
@@ -266,4 +267,8 @@ ul.results {
 }
 
 
+	.loader.inactive{
+		display: none;
+	}
+	
 

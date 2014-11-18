@@ -119,7 +119,15 @@
 			<%end%>
 	 }
 
-
+		/* Scale Images*/
+		
+		var wz = $('ul.results li').width();
+		$('ul.results li').css({'height':wz});
+		
+		$(window).resize(function() {
+			var wz = $('ul.results li').width();
+			$('ul.results li').css({'height':wz});
+		});
 
 	</script>
 
@@ -148,6 +156,9 @@
 	
 	<!-- Instagram Feed -->
 	<ul class="results">
+	
+		<div class="loader inactive"></div>
+
 		<% @media_items.each do |media_item|%>
 		<li style="background-image: url('<%=media_item.images.thumbnail.url%>')"></li>
 		<%end%>

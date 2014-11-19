@@ -104,6 +104,11 @@ div.map_block {
 	left: 20px;
 	bottom: 20px;
 	background-color: #0000ff;
+	color: #ffffff;
+	font-size: 20px;
+	font-weight: bold;
+	text-transform: uppercase;
+
 }
 
 	#map-canvas {
@@ -128,6 +133,12 @@ div.map_block {
 		.map_initial {
 			right: -300px;
 			opacity: 0;
+		}
+		
+		.map-text{
+			width: auto;
+			margin-top: 20%;
+			padding-left: 40%;
 		}
 
 /* Input */

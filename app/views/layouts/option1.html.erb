@@ -42,6 +42,9 @@
 					$(".loader").removeClass("inactive");
 					$(".loader-text").removeClass("inactive");	
 					$(".result").addClass("inactive");
+					for (var index in markers) {
+						markers[index].setMap(null);
+					}
 				}
 		    });
 
@@ -56,6 +59,9 @@
 					$(".loader").removeClass("inactive");	
 					$(".loader-text").removeClass("inactive");	
 					$(".result").addClass("inactive");
+					for (var index in markers) {
+						markers[index].setMap(null);
+					}
 			    }
 			})
 			

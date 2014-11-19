@@ -148,7 +148,9 @@
 		
 		<!-- Map -->
 		<div class="map_block<%=@media_items.empty? ? " map_initial" : ""%>">
-			<div id="map-canvas"></div>
+			<div id="map-canvas">
+				<div class="map-text">Loading...</div>
+			</div>
 		</div>
 		
 		<%= form_tag("/", method: "post", id: "tag_form", :class => "input_block#{@media_items.empty? ? ' input_initial' : ''}") do %>

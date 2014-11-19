@@ -162,9 +162,16 @@
 	<ul class="results">
 	
 		<div class="loader inactive"></div>
+		<div class="loader-text inactive">Loading...</div>
 
 		<% @media_items.each_with_index do |media_item,index|%>
-		<li id="marker_<%=index%>" style="background-image: url('<%=media_item.images.thumbnail.url%>')"></li>
+		<%if media_item.link%>
+		<a href="<%=media_item.link%>" target="_blank" class="result">
+		<%end%>
+		<li id="marker_<%=index%>" style="background-image: url('<%=media_item.images.standard_resolution.url%>')" class="result"></li>
+		<%if media_item.link%>
+		</a>
+		<%end%>
 		<%end%>
 	</ul>
 	<div class="spacer"></div>

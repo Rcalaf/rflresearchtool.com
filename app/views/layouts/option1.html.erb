@@ -39,7 +39,9 @@
 			   		$(".sticky").removeClass("sticky_initial");
 			   		$(".map_block").removeClass("map_initial");
 			   		$(".title_block").removeClass("title_initial");
-					$(".loader").removeClass("inactive");	
+					$(".loader").removeClass("inactive");
+					$(".loader-text").removeClass("inactive");	
+					$(".result").addClass("inactive");
 				}
 		    });
 
@@ -51,10 +53,13 @@
 			    	$(".sticky").removeClass("sticky_initial");
 			    	$(".map_block").removeClass("map_initial");
 			    	$(".title_block").removeClass("title_initial");
+					$(".loader").removeClass("inactive");	
+					$(".loader-text").removeClass("inactive");	
+					$(".result").addClass("inactive");
 			    }
 			})
 			
-		  $('.results > li').hover(function(){
+		  $('.results > a > li').hover(function(){
 			for (var index in markers) {
 				markers[index].setMap(null);
 			}

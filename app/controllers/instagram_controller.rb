@@ -24,6 +24,7 @@ class InstagramController < ApplicationController
     @html = "<h1>Search for tags, get tag info and get media by tag</h1>"
     @media_items = []
     @tags = []
+    times = 0
     
     if request.post?
       params[:tag] = params[:tag].sub(' ','_')
@@ -45,7 +46,7 @@ class InstagramController < ApplicationController
         @next_url = response.pagination.next_url
         @min_tag_id = response.pagination.min_tag_id
       
-        while @media_items.size < 10 do
+        while @media_items.size < 400 && times < 50 do
            response = @client.tag_recent_media(@tags[0].name,:max_id => @next_max_tag_id)
               for media_item in response
                 if media_item.location
@@ -62,6 +63,10 @@ class InstagramController < ApplicationController
       	    @next_max_tag_id = response.pagination.next_max_tag_id
             @next_url = response.pagination.next_url
             @min_tag_id = response.pagination.min_tag_id
+            
+            times = times + 1
+            
+            
         end
      
       else

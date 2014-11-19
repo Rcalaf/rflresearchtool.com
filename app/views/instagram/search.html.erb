@@ -114,7 +114,7 @@
 				markers.push(marker_<%=index%>);
 				
 				var infowindow_<%=index%> = new google.maps.InfoWindow({
-								      content: "<img src='<%=media_item.images.thumbnail.url%>'>"
+								      content: "<a href='<%=media_item.link%>' target='_blank'><img src='<%=media_item.images.thumbnail.url%>'></a>"
 								   });
 
 								  google.maps.event.addListener(marker_<%=index%>, "click", function() {

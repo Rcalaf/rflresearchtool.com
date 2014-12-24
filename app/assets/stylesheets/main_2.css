@@ -236,6 +236,18 @@ ul.results {
 	ul.results li:hover {
 		border: 2px solid #ff0000;
 	}
+	
+	p.ie-alert{
+		width: 100%;
+		margin: 40px 0;
+		text-align: center;
+		color: red;
+		position: fixed;
+		top: 0px;
+		left: 0px;
+		z-index: 40000;
+		font-weight: bold;
+	}
 
 
 

@@ -205,6 +205,9 @@ ul.results {
 	ul.results li:hover {
 		border: 2px solid #ff0000;
 	}
+	
+	
+
 
 
 @media only screen and (max-width: 1240px), only screen and (max-device-width: 1240px){

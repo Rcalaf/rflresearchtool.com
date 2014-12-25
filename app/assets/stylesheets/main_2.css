@@ -248,6 +248,11 @@ ul.results {
 		z-index: 40000;
 		font-weight: bold;
 	}
+	
+	p.ie-alert.small{
+		width: 550px;
+		margin: 20px 0;
+	}
 
 
 

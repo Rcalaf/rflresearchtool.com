@@ -52,7 +52,7 @@
 						$(".loader").removeClass("inactive");
 						$(".loader-text").removeClass("inactive");	
 						$(".result").addClass("inactive");
-						$(".ie-alert").addClass("small");
+						$(".ie-alert").removeClass("initial");
 						for (var index in markers) {
 							markers[index].setMap(null);
 						}
@@ -70,7 +70,7 @@
 						$(".loader").removeClass("inactive");	
 						$(".loader-text").removeClass("inactive");	
 						$(".result").addClass("inactive");
-						$(".ie-alert").addClass("small");
+						$(".ie-alert").removeClass("initial");
 						for (var index in markers) {
 							markers[index].setMap(null);
 						}
@@ -93,7 +93,7 @@
 		</script>
 	</head>
 	<body onLoad='initialize();'>
-		<p class="ie-alert">Beta Tool!<br /> Please use preferred browsers Chrome or Safari</p>
+		<p class="ie-alert<%=@media_items.empty? ? " initial" : ""%>">Beta Tool!<br /> Please use preferred browsers Chrome or Safari</p>
 	<%= yield%>
 	</body>
 </html>

@@ -238,8 +238,8 @@ ul.results {
 	}
 	
 	p.ie-alert{
-		width: 100%;
-		margin: 40px 0;
+		width: 550px;
+		margin: 20px 0;
 		text-align: center;
 		color: red;
 		position: fixed;
@@ -249,9 +249,9 @@ ul.results {
 		font-weight: bold;
 	}
 	
-	p.ie-alert.small{
-		width: 550px;
-		margin: 20px 0;
+	p.ie-alert.initial{
+		width: 100%;
+		margin: 40px 0;
 	}
 
 

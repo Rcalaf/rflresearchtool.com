@@ -1,2 +1,16 @@
-//$('#next_url').val(<%=@next_url%>);
-alert("<%=@next_url%>");
+
+
+<% @media_items.each_with_index do |media_item,index|%>
+
+var index_bis = $('.result').children().size();
+	<%if media_item.link%>
+		$('.results').append("<a href='<%=media_item.link%>' target='_blank' class='result'> <li id='marker_"+index_bis+"' data-url='<%=media_item.images.thumbnail.url%>' data-link='<%=media_item.link%>' data-long='<%=media_item.location.longitude%>' data-lat='<%=media_item.location.latitude%>' style=\"background-image: url('<%=media_item.images.standard_resolution.url%>')\" class='result'></li> </a>");
+	<%else%>
+		$('.results').append("<a href='<%=media_item.link%>' target='_blank' class='result'> <li id='marker_"+index_bis+"' data-long='<%=media_item.location.longitude%>' data-lat='<%=media_item.location.latitude%>' style=\"background-image: url('<%=media_item.images.standard_resolution.url%>')\" class='result'></li> </a>");
+	<%end%>
+<%end%>
+$("#next_max_tag_id").html(<%=@next_max_tag_id%>);
+
+
+
+

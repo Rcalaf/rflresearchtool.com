@@ -11,7 +11,7 @@ Rails.application.routes.draw do
    get '/' => 'instagram#search', as: :nav
    post '/' => 'instagram#search', as: :nav_post
    
-   post '/more' => 'instagram#more', as: :more
+   post '/more/:tag/:next_max_tag_id(/:num_pics)' => 'instagram#more', as: :more
    
 
   # Example of regular route:

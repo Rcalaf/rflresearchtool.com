@@ -31,7 +31,7 @@ function initMap(){
    map_2 = new google.maps.Map(document.getElementById("map_canvas"),
            mapOptions_2);
 
-   var myIconLocal = new google.maps.MarkerImage("http://vinitiate.se/blogazine/photos/canu_pin_local.png", null, null, null, new google.maps.Size(20,30));
+   var myIconLocal = new google.maps.MarkerImage("http://vinitiate.se/blogazine/photos/canu_pin_local.png", null, null, null, new google.maps.Size(30,30));
 
    		<% @media_items.each_with_index do |media_item,index|%>
 			var marker_<%=index%> = new google.maps.Marker({

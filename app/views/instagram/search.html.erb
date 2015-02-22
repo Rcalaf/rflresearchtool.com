@@ -102,13 +102,15 @@
 			
 			map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
 			
+			console.log($.browser.msie);
 	   		<% @media_items.each_with_index do |media_item,index|%>
+	
 				var marker_<%=index%> = new google.maps.Marker({
 						         map:map,
 						         draggable:false,
 						         //animation: google.maps.Animation.DROP,
 						         position: new google.maps.LatLng("<%=media_item.location.latitude%>","<%=media_item.location.longitude%>"),
-						         //icon: redCircle
+						         icon: redCircle
 						      });
 						
 				markers.push(marker_<%=index%>);

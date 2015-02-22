@@ -159,8 +159,7 @@
 	</head>
 	<body onLoad='initialize();'>
 		<div id="next_max_tag_id"><%=@next_max_tag_id%></div>
-		<p class="ie-alert<%=@media_items.empty? ? " initial" : ""%>">Beta Tool!<br /> Please use preferred browsers Chrome or Safari</p>
-	<%= yield%>
+		<%= yield%>
 	</body>
 </html>
 

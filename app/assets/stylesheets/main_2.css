@@ -223,8 +223,10 @@ ul.results {
 
 	ul.results li {
 		margin: 10px;
-		width: calc(33% - 24px);
-		height: calc(36% - 24px);
+	/*	width: calc(33% - 24px);
+		height: calc(36% - 24px);*/
+		width: 260px;
+		height: 260px;
 		display: block;
 		background-size: cover;
 		background-repeat: no-repeat;

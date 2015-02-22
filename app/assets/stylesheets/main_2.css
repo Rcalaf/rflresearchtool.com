@@ -225,8 +225,8 @@ ul.results {
 		margin: 10px;
 	/*	width: calc(33% - 24px);
 		height: calc(36% - 24px);*/
-		width: 260px;
-		height: 260px;
+		width: 30%;
+		height: 30%;
 		display: block;
 		background-size: cover;
 		background-repeat: no-repeat;

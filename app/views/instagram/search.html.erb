@@ -158,7 +158,11 @@
 		<%= form_tag("/", method: "post", id: "tag_form", :class => "input_block#{@media_items.empty? ? ' input_initial' : ''}") do %>
 		  <%= text_field_tag(:tag, (flash[:error].nil? ? params[:tag] : flash[:error]),:class => "hashtag", :id => "hash_input",:autocomplete=>"off") %>
 		  <%= submit_tag("Explore", :class => "submit") %>
+		  <p class="text_initial">Use this tool to seek global inspiration <br /> for your creative process. <br /> 
+				See what inspires people in their homes <br /> around the world in real time</p>
 		<% end %>
+		
+	
 					
 	</div>
 	

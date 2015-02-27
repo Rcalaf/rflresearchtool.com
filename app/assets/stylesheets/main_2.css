@@ -99,7 +99,7 @@ p.text_initial{
 	position: absolute;
 	width: 375px;
 	left: 50%;
-	margin-left: -110px;
+	margin-left: -113px;
 	margin-top: 80px;
 	text-align: center;
 	line-height: 30px;
@@ -242,7 +242,7 @@ ul.results {
 	/*	width: calc(33% - 24px);
 		height: calc(36% - 24px);*/
 		width: 30%;
-		height: 30%;
+		height: 33%;
 		display: block;
 		background-size: cover;
 		background-repeat: no-repeat;

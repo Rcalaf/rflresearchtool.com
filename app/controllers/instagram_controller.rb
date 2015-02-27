@@ -48,7 +48,7 @@ class InstagramController < ApplicationController
   	    @next_max_tag_id = response.pagination.next_max_tag_id
         @next_url = response.pagination.next_url
         @min_tag_id = response.pagination.min_tag_id
-      
+=begin      
         while @media_items.size < 25 && times < 100 do
            response = @client.tag_recent_media(@tag,:max_id => @next_max_tag_id)
               for media_item in response
@@ -72,7 +72,7 @@ class InstagramController < ApplicationController
             
         end
         #puts @media_items.size
-     
+=end     
       else
         flash[:error] = "Invalid Hashtag"
         redirect_to root_url

@@ -39,6 +39,7 @@ class InstagramController < ApplicationController
       unless @tags.empty? 
         @tag = @tags[0].name
         response = @client.tag_recent_media(@tag)
+      
         for media_item in response
           if media_item.location
       	    @media_items << media_item

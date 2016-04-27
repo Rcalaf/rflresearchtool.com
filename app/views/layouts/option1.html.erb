@@ -94,13 +94,13 @@
 			});
 			
 			jQuery(window).load(function (){
-				
-				load("<%=@tag%>",<%=@next_max_tag_id%>,<%=@media_items.size%> )
+				load("<%=@tag%>","<%=@next_max_tag_id%>",<%=@media_items.size%> )
 			});
 			
 			function load(tag,next_id,num_pics) {
 				
 				//alert(tag);
+				console.log('Tag:'+tag + ' next id: '+ next_id + 'num pics: '+num_pics);
 				if(next_id != ''){
 					$.ajax({
 						url: "/more/"+tag+"/"+next_id+"/"+num_pics,

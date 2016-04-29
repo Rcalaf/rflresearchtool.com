@@ -29,36 +29,32 @@ class InstagramController < ApplicationController
     times = 0
     
     if request.post?
-      params[:tag] = params[:tag].sub(' ','_')
-      
-    
+      params[:tag] = params[:tag].sub(' ','')
+      #params[:tag] = params[:tag].sub('_','')
+
       unless params[:tag].empty?
         @tags = @client.tag_search(params[:tag])
       end
       
       unless @tags.empty? 
         @tag = @tags[0].name
+        puts @tag
+        
         response = @client.tag_recent_media(@tag)
-     
+        
         for media_item in response
+          #puts ''
           #puts media_item
+          #puts ''
           if media_item.location
       	    @media_items << media_item
     			end
-      	end
+        end
 	
   	    @next_max_tag_id = response.pagination.next_max_tag_id
-        
         @next_url = response.pagination.next_url
-      
         @min_tag_id = response.pagination.min_tag_id
-       
-        puts response.pagination.next_max_tag_id
-        puts ''
-        puts response.pagination.next_url
-        puts ''
-         puts response.pagination.min_tag_id
-         puts ''
+
 =begin      
         while @media_items.size < 25 && times < 100 do
            response = @client.tag_recent_media(@tag,:max_id => @next_max_tag_id)
@@ -73,17 +69,16 @@ class InstagramController < ApplicationController
             #puts response.pagination.next_max_tag_id
             #puts @media_items.size
             
-
       	    @next_max_tag_id = response.pagination.next_max_tag_id
             @next_url = response.pagination.next_url
             @min_tag_id = response.pagination.min_tag_id
             
             times = times + 1
             
-            
         end
         #puts @media_items.size
 =end     
+        
       else
         flash[:error] = "Invalid Hashtag"
         redirect_to root_url
@@ -96,10 +91,12 @@ class InstagramController < ApplicationController
      @next_tag_id = params[:next_max_tag_id]
      @num_pics = params[:num_pics]
      @tag = params[:tag]
+     #puts  @tag
      @media_items = []
-     
+
      response = Instagram.client.tag_recent_media(@tag,:max_id => @next_tag_id)
-         for media_item in response
+
+        for media_item in response
            if media_item.location
        	    @media_items << media_item
        	   # puts media_item.link
@@ -109,25 +106,15 @@ class InstagramController < ApplicationController
 
        #puts response.pagination.next_max_tag_id
        #puts @media_items.size
-       
 
  	     @next_max_tag_id = response.pagination.next_max_tag_id
        @next_url = response.pagination.next_url
        @min_tag_id = response.pagination.min_tag_id
-       
-       #puts response.pagination.next_max_tag_id
-       #puts ''
-       puts response.pagination.next_url
-       puts ''
-       #puts response.pagination.min_tag_id
-       #puts ''
-     
 
       respond_to do |format|
         format.js {}
       end
-      
+
   end
-  
-  
+
 end

@@ -98,36 +98,38 @@
 			});
 			
 			function load(tag,next_id,num_pics) {
-				
-				//alert(tag);
-				console.log('Tag:'+tag + ' next id: '+ next_id + 'num pics: '+num_pics);
 				if(next_id != ''){
+					console.log('next id: '+ next_id);
 					$.ajax({
 						url: "/more/"+tag+"/"+next_id+"/"+num_pics,
 						type: "POST"
-					}).done(function() {
-						console.log(counter);
+					}).done(function(){
+						
+						console.log('Done.');
+					}).complete(function(err){
+						console.log('ajax call done: '+counter);
+						console.log(err);
+						
 						$('.result').children().each(function (index) {
 							if(typeof $(this).attr('data-long') === 'string') {
-								console.log(index + ": long:" + $(this).attr('data-long') + "lat:" + $(this).attr('data-long'));
+								//console.log(index + ": long:" + $(this).attr('data-long') + "lat:" + $(this).attr('data-long'));
 								var marker = new google.maps.Marker({
 									         map:map,
 									         draggable:false,
 									         //animation: google.maps.Animation.DROP,
 									         position: new google.maps.LatLng($(this).attr('data-lat'),$(this).attr('data-long')),
 									         icon: new google.maps.MarkerImage("assets/circle.png", null, null, null, new google.maps.Size(10,10))
-											
-									      })
+								})
 										 
-										  markers.push(marker);
+								markers.push(marker);
 										
 							 	var infowindow = new google.maps.InfoWindow({
-												      content: "<a href='"+$(this).attr('data-link')+"' target='_blank'><img src='"+$(this).attr('data-url')+"'></a>"
-												   });
+									content: "<a href='"+$(this).attr('data-link')+"' target='_blank'><img src='"+$(this).attr('data-url')+"'></a>"
+								});
 
-												  google.maps.event.addListener(marker, "click", function() {
-												  	  infowindow.open(map,marker);
-												  });
+								google.maps.event.addListener(marker, "click", function() {
+								  	infowindow.open(map,marker);
+								});
 										
 								$(this).removeAttr('data-long');
 								$(this).removeAttr('data-lat');
@@ -136,22 +138,26 @@
 							}
 							
 						});
+						
 						counter = counter+1;
+						
 						if($('.result').children().size() < 200 && counter < 20){
+							
+							console.log($('#next_max_tag_id').html());
 							load(tag,$('#next_max_tag_id').html(),$('.result').children().size());
 						}
-							  $('.results > a > li').hover(function(){
-								for (var index in markers) {
-									markers[index].setMap(null);
-								}
-								markers[this.id.split('_')[1]].setMap(map);
-							//	alert(markers[this.id.split('_')[1]]);
-							  },function(){
-								for (var index in markers) {
-									markers[index].setMap(map);
-								}
-							  });
-					
+						
+					    $('.results > a > li').hover(function(){
+							for (var index in markers) {
+								markers[index].setMap(null);
+							}
+							markers[this.id.split('_')[1]].setMap(map);
+						//	alert(markers[this.id.split('_')[1]]);
+					   },function(){
+							for (var index in markers) {
+								markers[index].setMap(map);
+							}
+					   });
 					});
 				}
 			}
@@ -159,7 +165,7 @@
 		</script>
 	</head>
 	<body onLoad='initialize();'>
-		<div id="next_max_tag_id"><%=@next_max_tag_id%></div>
+		<div style="display: none;" id="next_max_tag_id"><%=@next_max_tag_id%></div>
 		<%= yield%>
 	</body>
 </html>

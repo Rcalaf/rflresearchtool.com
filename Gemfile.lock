@@ -59,13 +59,11 @@ GEM
     json (1.8.3)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
-    mime-types (3.0)
-      mime-types-data (~> 3.2015)
-    mime-types-data (3.2016.0221)
+    mime-types (2.99.1)
     minitest (5.8.4)
     multi_json (1.11.3)
     multipart-post (2.0.0)
-    mysql2 (0.3.17)
+    mysql2 (0.3.20)
     rack (1.5.5)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -124,7 +122,8 @@ DEPENDENCIES
   instagram
   jbuilder (~> 2.0)
   jquery-rails
-  mysql2
+  mime-types (< 3.0)
+  mysql2 (< 0.4.0)
   rails (= 4.1.7)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)

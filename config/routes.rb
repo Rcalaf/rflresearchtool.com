@@ -9,6 +9,7 @@ Rails.application.routes.draw do
    get '/oauth/callback' => 'instagram#callback', as: "callback"
    
    get '/' => 'instagram#search', as: :nav
+   get '/privacy-policy' => 'instagram#privacy', as: :privacy
    post '/' => 'instagram#search', as: :nav_post
    
    post '/more/:tag/:next_max_tag_id(/:num_pics)' => 'instagram#more', as: :more

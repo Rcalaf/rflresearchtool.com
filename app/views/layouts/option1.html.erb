@@ -39,8 +39,8 @@
 			/* Intro Animations*/
 			var counter = 0;
 			$(document).ready(function(){
-				
-				if($('input:text').val() != ''){
+			
+				if(($('#hash_input').size() > 0) && ($('input:text').val() != '')){
 					$(".input_block").removeClass("input_initial");
 			   		$(".sticky").removeClass("sticky_initial");
 			   		$(".map_block").removeClass("map_initial");

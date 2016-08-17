@@ -44,6 +44,10 @@ input.submit {
 	transition: all .3s;	
 }
 
+.submit-connect{
+	transition: all .3s;
+}
+
 ul.results li, .title_block, .sticky {
 	transition: all .5s ease-in-out;
 }
@@ -224,6 +228,31 @@ form.input_block {
 		background-color: #ffff00;
 		color: #0000ff;
 	}
+	
+.submit-connect:hover;{
+	cursor: pointer;	
+	background-color: #ffff00;
+	color: #0000ff;
+}
+
+.submit-connect {
+	width: 84px;
+	height: 43px;
+	position: absolute;
+	left: 50%;
+	top: 140px;
+	margin-top: 240px;
+	margin-left: -42px;
+	line-height: 43px;
+	text-align: center;
+	background-color: #0000ff;
+	font-weight: bold;
+	color: #fff;
+	border: 1px solid #fff;
+	text-transform: uppercase;
+
+}
+
 	
 
 /* Instagram Feed */

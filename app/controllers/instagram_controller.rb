@@ -9,18 +9,24 @@ class InstagramController < ApplicationController
     @instagram = Instagram
   end
   
+  def privacy 
+    pdf_filename = File.join(Rails.root, "public/PrivacyPolicy.pdf")
+    send_file(pdf_filename, :filename => "your_document.pdf", :disposition => 'inline', :type => "application/pdf")
+  end
+  
   def connect
     redirect_to Instagram.authorize_url(:redirect_uri => CALLBACK_URL)
   end
   
   def callback
-    response = Instagram.get_access_token(params[:code], :redirect_uri => CALLBACK_URL)
-    session[:access_token] = response.access_token
+    @response = Instagram.get_access_token(params[:code], :redirect_uri => CALLBACK_URL)
+    session[:access_token] = @response.access_token
     redirect_to nav_url
   end
   
   def search
     @client = Instagram.client(:access_token => session[:access_token])
+    puts @client
     @html = "<h1>Search for tags, get tag info and get media by tag</h1>"
     @media_items = []
     @tags = []
@@ -38,14 +44,15 @@ class InstagramController < ApplicationController
       
       unless @tags.empty? 
         @tag = @tags[0].name
-        puts @tag
+        puts "tag: #{@tag}"
         
         response = @client.tag_recent_media(@tag)
+        puts response.inspect
         
         for media_item in response
-          #puts ''
-          #puts media_item
-          #puts ''
+          puts ''
+          puts media_item
+          puts ''
           if media_item.location
       	    @media_items << media_item
     			end
@@ -95,7 +102,7 @@ class InstagramController < ApplicationController
      @media_items = []
 
      response = Instagram.client.tag_recent_media(@tag,:max_id => @next_tag_id)
-
+     puts response
         for media_item in response
            if media_item.location
        	    @media_items << media_item

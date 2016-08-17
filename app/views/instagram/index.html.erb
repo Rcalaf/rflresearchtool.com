@@ -20,5 +20,7 @@
 	  <%= text_field_tag(:tag, params[:tag],:class => "hashtag", :id => "hash_input") %>
 	  <%= submit_tag("find", :class => "submit") %>
 	<% end %>
+
+	<%= button_to( "Connect",connect_url ,:form_class => "submit")%>
 				
 </div>

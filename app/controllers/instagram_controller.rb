@@ -3,6 +3,7 @@ class InstagramController < ApplicationController
   layout 'option1'
   
   CALLBACK_URL = "http://www.rflresearchtool.com/oauth/callback"
+  #CALLBACK_URL = "http://0.0.0.0:3000/oauth/callback"
   
   def index 
     @instagram_object = Instagram.client_id
@@ -18,8 +19,13 @@ class InstagramController < ApplicationController
     redirect_to Instagram.authorize_url(:redirect_uri => CALLBACK_URL)
   end
   
+  def disconnect
+    session[:access_token] = nil
+    redirect_to root_url
+  end
+  
   def callback
-    @response = Instagram.get_access_token(params[:code], :redirect_uri => CALLBACK_URL)
+    @response = Instagram.get_access_token(params[:code], :redirect_uri => CALLBACK_URL, :scope => 'basic+public_content')
     session[:access_token] = @response.access_token
     redirect_to nav_url
   end

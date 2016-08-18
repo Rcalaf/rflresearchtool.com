@@ -6,6 +6,7 @@ Rails.application.routes.draw do
    root 'instagram#search'
    
    get '/oauth/connect' => 'instagram#connect', as: "connect"
+   get '/oauth/disconnect' => 'instagram#disconnect', as: "disconnect"
    get '/oauth/callback' => 'instagram#callback', as: "callback"
    
    get '/' => 'instagram#search', as: :nav

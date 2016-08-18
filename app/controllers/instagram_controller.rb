@@ -27,12 +27,12 @@ class InstagramController < ApplicationController
   def callback
     @response = Instagram.get_access_token(params[:code], :redirect_uri => CALLBACK_URL)
     session[:access_token] = @response.access_token
+    puts session[:access_token]
     redirect_to nav_url
   end
   
   def search
     @client = Instagram.client(:access_token => session[:access_token])
-    puts @client
     @html = "<h1>Search for tags, get tag info and get media by tag</h1>"
     @media_items = []
     @tags = []

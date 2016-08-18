@@ -16,7 +16,7 @@ class InstagramController < ApplicationController
   end
   
   def connect
-    redirect_to Instagram.authorize_url(:redirect_uri => CALLBACK_URL, :scope => 'basic+public_content')
+    redirect_to Instagram.authorize_url(:redirect_uri => CALLBACK_URL, :scope => 'basic public_content')
   end
   
   def disconnect

@@ -2,7 +2,7 @@ class InstagramController < ApplicationController
   
   layout 'option1'
   
-  CALLBACK_URL = "http://0.0.0.0:3000/oauth/callback"
+  CALLBACK_URL = "http://www.rflresearchtool.com/oauth/callback"
   
   def index 
     @instagram_object = Instagram.client_id

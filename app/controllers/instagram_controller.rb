@@ -16,7 +16,7 @@ class InstagramController < ApplicationController
   end
   
   def connect
-    redirect_to Instagram.authorize_url(:redirect_uri => CALLBACK_URL)
+    redirect_to Instagram.authorize_url(:redirect_uri => CALLBACK_URL, :scope => 'basic+public_content')
   end
   
   def disconnect
@@ -31,7 +31,7 @@ class InstagramController < ApplicationController
   end
   
   def search
-    @client = Instagram.client(:access_token => session[:access_token], :scope => 'basic+public_content')
+    @client = Instagram.client(:access_token => session[:access_token])
     puts @client
     @html = "<h1>Search for tags, get tag info and get media by tag</h1>"
     @media_items = []
